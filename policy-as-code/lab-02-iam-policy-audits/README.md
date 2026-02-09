@@ -38,17 +38,6 @@ This prevents lack of scoped access and enforces least privilege prior to deploy
 
 ---
 
-## File Structure
-
-lab-02-iam-policy-audit/
-├── input.json
-├── policy/
-│ └── iam.rego
-├── conftest.toml
-└── README.md
-
----
-
 ## Compliance Mapping
 
 This lab aligns with key compliance and security objectives:
