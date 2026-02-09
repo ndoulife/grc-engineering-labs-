@@ -32,3 +32,17 @@ Provides automated, auditable enforcement
 NIST SP 800-53 AC-6(10): Automated enforcement of least privilege
 
 NIST SP 800-53 SC-12: Prevention of unauthorized public access
+
+### Automation: GitHub Actions (Shift-Left Enforcement)
+
+To demonstrate how this control integrates into a real engineering workflow, a lightweight GitHub Actions pipeline is included.
+
+### What the Pipeline Does
+
+- Runs automatically on pull requests and relevant pushes
+
+- Executes Conftest against policy inputs
+
+- Fails the build when insecure configurations are detected
+
+This simulates how GRC controls can be enforced during development, preventing risk from reaching production rather than identifying it post-deployment.
