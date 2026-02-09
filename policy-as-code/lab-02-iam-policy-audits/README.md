@@ -40,3 +40,106 @@ This prevents lack of scoped access and enforces least privilege prior to deploy
 
 ## File Structure
 
+lab-02-iam-policy-audit/
+├── input.json
+├── policy/
+│ └── iam.rego
+├── conftest.toml
+└── README.md
+
+---
+
+## Example Input (input.json)
+
+```json
+{
+  "resource": {
+    "aws_iam_policy": {
+      "bad_policy": {
+        "policy": {
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": "*",
+              "Resource": "*"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+
+This simulated IAM policy contains wildcards and should be rejected.
+
+## Policy Implementation (policy/iam.rego)
+
+package iam
+
+deny[msg] {
+  statement := input.resource.aws_iam_policy[_].policy.Statement[_]
+  statement.Action == "*"
+  msg := "Wildcard action '*' is not allowed in IAM policies."
+}
+
+deny[msg] {
+  statement := input.resource.aws_iam_policy[_].policy.Statement[_]
+  statement.Resource == "*"
+  msg := "Wildcard resource '*' is not allowed in IAM policies."
+}
+
+## Conftest Configuration (conftest.toml)
+
+policy = "policy"
+
+This tells Conftest where to find the policy definitions.
+
+## Running Locally (e.g., GitHub Codespaces)
+
+### Navigate to the lab directory:
+
+cd policy-as-code/lab-02-iam-policy-audit
+
+
+### Then run:
+
+conftest test input.json --all-namespaces
+
+
+### Expected output:
+
+FAIL - input.json - iam - Wildcard action '*' is not allowed in IAM policies.
+FAIL - input.json - iam - Wildcard resource '*' is not allowed in IAM policies.
+
+
+This indicates the policy correctly flagged insecure permissions.
+
+## Compliance Mapping
+
+This lab aligns with key compliance and security objectives:
+
+- NIST SP 800-53 AC-2 – Least Privilege
+
+- NIST SP 800-53 AC-3 – Access Enforcement
+
+- ISO/IEC 27001 A.9.1.2 – Least privilege access control
+
+- ISO/IEC 27001 A.9.2.3 – Management of privileged access rights
+
+- POPIA / GDPR (contextual) – Minimizes risk of unauthorized access and data exposure
+
+## CI/CD Integration
+
+To enforce this check automatically in a development pipeline, a GitHub Actions workflow can be added that runs this policy on pull requests and relevant pushes (e.g., before merging code or deploying infrastructure). This ensures insecure IAM configurations are detected early and blocked from reaching production.
+
+## Outcomes
+
+By completing this lab, we have:
+
+- Built a policy-as-code control for IAM permissions
+
+- Shifted governance left into the development process
+
+- Automated enforcement in a way compatible with modern DevOps practices
+
+- Demonstrated technical alignment with compliance standards
