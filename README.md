@@ -25,13 +25,15 @@ and embedded directly into platforms and pipelines.
 
 ## Disclaimer & Attribution
 
-Some labs are adapted from publicly available educational resources
-(e.g. the GRC Playground project) and are used here strictly for learning
-and demonstration purposes, with attribution provided.
+## Attribution
 
-The value in this repository is in:
-- My implementation
-- My interpretation
-- My documentation
-- My control mappings and design decisions
+This repository includes labs adapted from the following public learning resources:
 
+- GRC Playground by Ash Pearce  
+  https://github.com/ashpearce/GRC-Playground
+
+These materials are used for educational purposes only.
+All original concepts remain the property of their respective authors.
+
+Any additional documentation, mappings, commentary, and structure
+in this repository reflects my own learning and implementation work.
