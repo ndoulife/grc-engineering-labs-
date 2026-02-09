@@ -3,7 +3,7 @@ Overview
 
 This lab demonstrates how security and compliance intent can be continuously monitored after deployment, not just validated at build time.
 
-While policy-as-code guardrails prevent insecure configurations from being deployed, environments can still drift over time due to manual changes, break-glass access, or operational fixes. This lab shows how cloud-native services can be used to detect and surface that drift in a way that supports governance, audit readiness, and risk visibility — without turning GRC into a SOC function.
+While policy-as-code guardrails prevent insecure configurations from being deployed, environments can still drift over time due to manual changes, break-glass access, or operational fixes. This lab shows how cloud-native services can be used to detect and surface that drift in a way that supports governance, audit readiness, and risk visibility without turning GRC into a SOC function.
 
 The focus here is continuous assurance, not incident response.
 
